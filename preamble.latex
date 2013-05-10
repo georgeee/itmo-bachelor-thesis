@@ -42,6 +42,7 @@
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries\MakeUppercase}
 \renewcommand{\cftbeforetoctitleskip}{-1em}
 \renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-2.5em}}
+\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
 \renewcommand{\cftsecfont}{\hspace{30pt}}
 \renewcommand{\cftsubsecfont}{\hspace{9pt}}
 \renewcommand{\cftbeforechapskip}{1em}
@@ -109,22 +110,90 @@
 \renewcommand{\labelenumiii}{\arabic{enumiii})}
 
 
+\usepackage{multirow}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.2}
+
+
+\usepackage[tableposition=top]{caption}
+\DeclareCaptionLabelFormat{gostcaption}{#1 #2}
+\DeclareCaptionLabelSeparator{gost}{~—~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostcaption}
+\captionsetup[table]{labelformat=gostcaption}
+\captionsetup[lstlisting]{labelformat=gostcaption}
+
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+
 \usepackage[bookmarks=true,unicode=true,pdfstartview={FitV},hidelinks]{hyperref}
 \usepackage[all]{hypcap}
+\newcommand{\inlref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
+
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
+\newcommand{\image}[2]{%
+    \begin{figure}[ht]
+        \includegraphics[width=\textwidth]{#1}
+        \caption{#2}
+        \label{img:#1}
+    \end{figure}
+}
+\def\figureautorefname{Рисунок}
+
 
 \usepackage{mathtools}
 
 
+\usepackage{xcolor}
+\usepackage{listings}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{bluekw}{rgb}{0,0,0.5}
+\definecolor{redstrings}{rgb}{0.5,0,0}
+\definecolor{graylinenumbers}{rgb}{0.5,0.5,0.5}
+\input{pseudo.latex}
+\lstset{%
+    basicstyle=\footnotesize\ttfamily,
+    columns=fullflexible,
+    breaklines=true,
+    breakatwhitespace,
+    extendedchars=true,
+    aboveskip=1em,
+    belowskip=1em,
+    frame=single,
+    captionpos=b,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{graylinenumbers},
+    rulecolor=\color{black},
+    tabsize=2,
+    commentstyle=\color{greencomments},
+    keywordstyle=\color{bluekw}\bfseries,
+    stringstyle=\color{redstrings}
+}
+\renewcommand\lstlistingname{Листинг}
+\lstnewenvironment{code}[1][]
+    {\lstset{float=ht,#1}}
+        {}
+
 % For some reason those are missing in polyglossia
-\def\bbljan{январ}
-\def\bblfeb{февраль}
+\def\bbljan{янв}
+\def\bblfeb{февр}
 \def\bblmar{март}
-\def\bblapr{апрель}
+\def\bblapr{апр}
 \def\bblmay{май}
 \def\bbljun{июнь}
 \def\bbljul{июль}
-\def\bblaug{август}
-\def\bblsep{сентябрь}
-\def\bbloct{октбярь}
-\def\bblnov{ноябрь}
-\def\bbldec{декабрь}
+\def\bblaug{авг}
+\def\bblsep{сент}
+\def\bbloct{окт}
+\def\bblnov{нояб}
+\def\bbldec{дек}
+
+
+\input{licenses.latex}
