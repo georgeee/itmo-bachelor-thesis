@@ -149,6 +149,8 @@
 
 \usepackage{mathtools}
 
+\usepackage{longtable}
+
 
 \usepackage{xcolor}
 \usepackage{listings}
@@ -157,6 +159,7 @@
 \definecolor{redstrings}{rgb}{0.5,0,0}
 \definecolor{graylinenumbers}{rgb}{0.5,0.5,0.5}
 \input{pseudo.latex}
+\input{haskell.latex}
 \lstset{%
     basicstyle=\footnotesize\ttfamily,
     columns=fullflexible,
@@ -195,5 +198,7 @@
 \def\bblnov{нояб}
 \def\bbldec{дек}
 
+\usepackage{forest}
 
 \input{licenses.latex}
+
