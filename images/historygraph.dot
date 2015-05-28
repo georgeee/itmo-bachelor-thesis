@@ -1,0 +1,47 @@
+digraph {
+    graph [rankdir=TB
+          ,bgcolor=transparent
+          ,size="20,4"
+          ];
+    node [shape=box
+         ,fillcolor=white
+         ,style=filled];
+    0 [label="mm10.fa\nmm10.gtf\nreads.fq\nmm10-refseq.gtf", shape=box];
+    1 [label="bowtie-build mm10.fa -o mm10.bwa",shape=hexagon];
+    2 [label="mm10.bwa",shape=box];
+    3 [label="tophat -x mm10.bwa -G mm10.gtf reads.fq"
+      shape=hexagon];
+    4 [label="reads.sam",shape=box];
+    5 [label="htseq-count -G mm10.gtf reads.sam > reads.cnt"
+      ,shape=hexagon];
+    6 [label="reads.cnt",shape=box];
+    7 [label="bowtie-build hg19.fa -o hg19.gtf",shape=hexagon];
+    8 [label="hg19.gtf",shape=box];
+    9 [label="tophat -x mm10.bwa -G mm10-refseq.gtf reads.fq"
+      shape=hexagon];
+    10 [label="reads.sam",shape=box];
+    11 [label="hseq-count -G mm10.gtf reads.sam > reads.cnt"
+      ,shape=hexagon];
+    12 [label="reads.cnt",shape=box];
+    0 -> 1 [style=solid];
+    0 -> 1 [style=dotted];
+    1 -> 2 [style=solid];
+    2 -> 3 [style=solid];
+    2 -> 3 [style=dotted];
+    3 -> 4 [style=solid];
+    0 -> 3 [style=solid];
+    0 -> 5 [style=solid];
+    4 -> 5 [style=solid];
+    4 -> 5 [style=dotted];
+    5 -> 6 [style=solid];
+    0 -> 7 [style=dotted];
+    0 -> 7 [style=solid];
+    7 -> 8 [style=solid];
+    2 -> 9 [style=solid];
+    2 -> 9 [style=dotted];
+    9 -> 10 [style=solid];
+    0 -> 11 [style=solid];
+    4 -> 11 [style=solid];
+    4 -> 11 [style=dotted];
+    11 -> 12 [style=solid];
+}

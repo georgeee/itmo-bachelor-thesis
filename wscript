@@ -24,6 +24,8 @@ def build(bld):
         'Introduction',
         ('01', [
             'Linux',
+            'Unionfs',
+            'ZSH',
         ]),
         ('02', [
             'Goal',
@@ -35,6 +37,7 @@ def build(bld):
             'Functions',
             'Main',
             'DirTree',
+            'Graph',
             'Workflow',
         ]),
         'Conclusion',
