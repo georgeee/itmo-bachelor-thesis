@@ -34,11 +34,13 @@ def build(bld):
             'Tools',
         ]),
         ('03', [
+            'Gshell',
             'Functions',
             'Main',
             'DirTree',
             'Graph',
             'Workflow',
+            'Implementation',
         ]),
         'Conclusion',
         'Licensing',

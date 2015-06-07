@@ -1,0 +1,110 @@
+Реализация и используемые возможности языка
+-------------------------------------------
+
+#### Линзы ####
+
+Для работы со внутренней структурой была использована библиотека lens[@lens].
+
+Данная библиотека позволяет очень просто модифицировать объекты. Например у нас
+есть проект со своей структурой и эта структура в памяти программы. Чтобы
+получить время создания второй ревизии без использования библиотеки lens, нам
+было бы необходимо писать очень длинную рекурсивную функцию, которая бы
+распаковывала структуру, проверяла наличие необходимых подпапок и так далее. Код
+получился бы очень громоздким. Но с помощью данной библиотеки мы можем написать:
+
+\begin{code}[language=Haskell,label=lst:dirdatatree,
+                   caption={}]
+timeStamp name = revisionRoot name.traverse.filteredByName timeStampFileName._file
+\end{code}
+
+На вход функции мы просто даем имя интересующей нас ревизии и саму структуру.
+
+Линзы - это функции первого класса для доступа к данным в структурах. Отдаленным
+аналогом в императивных язык программирования являются getters и setters. В
+русском языке правильней было бы их назвать лупой, так как они позволяют
+сфокусироваться на каком-то значении. А фокусироваться нам нужно как раз для
+того, чтобы изменять (set) или получать (get).
+
+Ряд функций, для упрощения работы с состоянием программы приведен ниже:
+\begin{code}[language=Haskell,label=lst:commitcode,
+                   caption={}]
+projectRoot = _dirTree._contents
+
+gshellRoot = projectRoot.traverse.filteredByName gshellDirName._contents
+
+commitsRoot = gshellRoot.traverse.filteredByName commitsDirName._contents
+
+revisionRoot name = commitsRoot.traverse.filteredByName name._contents
+
+workDirs = projectRoot.traverse.filteredByName workDirName
+
+workingState name = gshellRoot.traverse.filteredByName name._contents.traverse.filteredByName workHelperFileName._file
+
+masterState = commitsRoot.traverse.filteredByName masterFileName._file
+
+parents name = revisionRoot name.traverse.filteredByName parentsFileName._file
+
+timeStamp name = revisionRoot name.traverse.filteredByName timeStampFileName._file
+
+revCommit revision = commitsRoot.traverse.filteredByName revision._contents.traverse.filteredByName commitFileName._file
+\end{code}
+
+#### Монада State  ####
+ 
+Монада в языке Haskell --- это класс типов, для вхождения в который, на типе m
+должны быть определены функции 
+* `>>= :: m a -> (a -> m b) -> m b`
+* `return a -> m a`
+
+Вопреки расхожему мнению, `>>=` может иметь самые различные семантические
+нагрузки --- от изощрённого составления цепочки вызовов ("пустая" монада), до
+поддержки и передачи состояния (монада State), до ввода-вывода (монада IO).
+Поэтому, по некоторой информации, императивным программистам проще думать о
+монадах в Haskell как о программируемом операторе "точка с запятой".
+
+Данная монада State позволяет манипулировать состоянием программы, передавая
+результат и новое состояние из одной функции в другую.
+
+#### Трансформеры ####
+
+Монадный трансформер --- это некая "матрешка". Он объедиет две монады в одну, с
+целью получения свойст двух монад в одной.
+
+В моей программе используется монадный трансформер _StateT_ вместе с монадой
+_IO_. Это позволяло менять состояние программы, а так же выполнять IO действия,
+при этом сохраняя строгую типизированность программы и быть в безопасности от
+побочных эффектов.
+
+Совместное использование трех технологий: линзы, состояние и монадный
+трансформер --- позволяет очень легко писать код программы, быстро его изменять
+и просто читать.
+
+#### Результат использования технологий ####
+
+Поскольку было решено использовать монаду state с линзами, то код получился
+очень легко читаем. Но, в тоже время, он сохраняет все свойства и плюсы
+функционального подхода. То есть --- мы получили состояние (считали с диска),
+затем необходимым образом его изменили, и только после этого, включая
+необходимые проверки, записали его обратно на диск, а также, по необходимости,
+выполнили и другие IO действия.
+
+На \inlref{листинге}{lst:commitcode} мы можем видеть пример функции реализованной
+при помощи данных библиотек и техник. Как можно заметить, код получился в
+императивном стиле, легко понять, что делает любая строка. Хотя, за каждой из
+них стоит много другого, вспомогательного, кода.
+
+\begin{code}[language=Haskell,label=lst:commitcode,
+                   caption={}]
+commitGshell :: String -> FilePath -> StateT GState IO Result
+commitGshell message currentWork = do
+    lift $ unmountWorkspace currentWork
+    workState <- getWorkState currentWork
+    let parent = last $ workState ^. revisions
+    setTimeStamp parent
+    writeCommitMessage message parent
+    revName <- createCommitDir $ Parents [parent]
+    workState' <- gets $ WorkingState . generateBranch [revName]
+    workingState (takeFileName currentWork) .= show workState'
+    writeStateToDisk
+    get >>= lift . createWorkspace currentWork (workState' ^. revisions)
+\end{code}
