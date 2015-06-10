@@ -95,7 +95,7 @@ _IO_. Это позволяло менять состояние программ
 каждой из них стоит много другого, вспомогательного, кода.
 
 \begin{code}[language=Haskell,label=lst:commitcode,
-                   caption={}]
+                   caption={Функция для создания коммита}]
 commitGshell :: String -> FilePath -> StateT GState IO Result
 commitGshell message currentWork = do
     lift $ unmountWorkspace currentWork
