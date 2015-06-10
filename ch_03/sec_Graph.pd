@@ -25,10 +25,8 @@
 
 Если же будет использована команада _gshell makefile reads.sam_, то будет
 выведен лог данного файла в виде списка команд, что его "породили".
-
-\begin{code}[language=bash,label=lst:graph,
-                   caption={}]
+```
 $ bowtie-build mm10.fa -o mm10.bwa
 $ tophat -x mm10.bwa -G mm10.gtf reads.fq
 $ htseq-count -G mm10.gtf reads.sam > reads.cnt
-\end{code}
+```
