@@ -1,0 +1,54 @@
+Дополнительные примеры работы
+-----------------------------
+
+\subsection{Пример №1}
+
+В данном примере рассмотрено использование примитивных команд, которые часто
+используются в консоли. Так же используется функция отмены предыдущего действия
+так как были переданы аргументы в не правильном порядке, что дало не верный
+результат.
+
+\begin{code}[language=bash,label=lst:example2,
+                   caption={}]
+    $ gshell init project
+    $ gshell enter project
+    work-id6174 $ touch x
+    work-id6174 $ touch y
+    work-id6174 $ echo 1 >> x
+    work-id6174 $ echo 2 >> y
+    work-id6174 $ cat x y > z
+    work-id6174 $ gshell rollback
+    work-id6174 $ cat y x > z
+\end{code}
+
+\includegraphics[scale=1.5]{example2.eps}
+
+На рисунке виден пример граф данной сессии пользователя. Видно, какие файлы были
+задействованы для каких команд.
+
+\subsection{Пример №2}
+
+В данном примере рассмотрено использование gshell для параллельной работы в
+нескольких ветвях.
+
+\begin{code}[language=bash,label=lst:example3,
+                   caption={}]
+    $ gshell init project
+    $ gshell enter project
+    work-id6174 $ touch x
+    work-id6174 $ echo 1 > z
+
+    $ gshell enter project
+    work-id4416 $ touch y
+    work-id4416 $ echo 2 > z
+    work-id4416 $ cat z > m
+
+    $ gshell enter project
+    work-id1510 $ mkdir 1
+    work-id1510 $ touch 2
+\end{code}
+
+\includegraphics[scale=1.5]{example3.eps}
+
+На рисунке виден пример граф данной сессии пользователя. Показано, что в графе
+есть несколько сессий, которые работали параллельно.

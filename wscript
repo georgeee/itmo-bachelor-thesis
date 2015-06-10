@@ -28,8 +28,9 @@ def build(bld):
             'ZSH',
         ]),
         ('02', [
-            'Goal',
             'Problem',
+            'Goal',
+            'Task',
             'Similar',
             'Tools',
         ]),
@@ -41,9 +42,9 @@ def build(bld):
             'Graph',
             'Workflow',
             'Implementation',
+            'Examples',
         ]),
         'Conclusion',
-        'Licensing',
     ])
     bld(features='pandoc-merge', source=sources + ' bib.bib', target='main.latex',
             disabled_exts='fancy_lists', 

@@ -4,7 +4,7 @@
 Пример процедуры работы пользователя с проектом _project_ при помощи
 _gshell_:
 
-\begin{code}[language=bash,label=lst:dirdatatree,
+\begin{code}[language=bash,label=lst:example1,
                    caption={}]
 $ gshell init project
 $ gshell enter project

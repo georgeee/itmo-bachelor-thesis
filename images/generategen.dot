@@ -6,25 +6,38 @@ digraph {
     node [shape=box
          ,fillcolor=white
          ,style=filled];
-    0 [label="mm10.fa\nmm10.gtf\nreads.fq", shape=box];
-    1 [label="bowtie-build mm10.fa -o mm10.bwa",shape=hexagon];
-    2 [label="mm10.bwa",shape=box];
-    3 [label="tophat -x mm10.bwa -G mm10.gtf reads.fq"
-      shape=hexagon];
-    4 [label="reads.sam",shape=box];
-    5 [label="htseq-count -G mm10.gtf reads.sam > reads.cnt"
+    0 [label="touch x"
       ,shape=hexagon];
-    6 [label="reads.cnt",shape=box];
+    1 [label=x,shape=box];
+    2 [label="touch y"
+      ,shape=hexagon];
+    3 [label=y,shape=box];
+    4 [label="echo 1 > z"
+      ,shape=hexagon];
+    5 [label=z,shape=box];
+    6 [label="echo 2 > z"
+      ,shape=hexagon];
+    7 [label=z,shape=box];
+    8 [label="cat z > m"
+      ,shape=hexagon];
+    9 [label=m,shape=box];
+    16 [label="mkdir 1"
+       ,shape=hexagon];
+    17 [label="1/",shape=box];
+    18 [label="touch 2"
+       ,shape=hexagon];
+    19 [label=2,shape=box];
     0 -> 1 [style=solid];
-    0 -> 1 [style=dotted];
-    1 -> 2 [style=solid];
+    1 -> 6 [style=dotted];
     2 -> 3 [style=solid];
-    2 -> 3 [style=dotted];
-    3 -> 4 [style=solid];
-    0 -> 3 [style=solid];
-    0 -> 5 [style=solid];
+    3 -> 4 [style=dotted];
     4 -> 5 [style=solid];
-    4 -> 5 [style=dotted];
-    5 -> 6 [style=solid];
-
+    6 -> 7 [style=solid];
+    7 -> 8 [style=solid];
+    7 -> 8 [style=dotted];
+    7 -> 16 [style=dotted];
+    8 -> 9 [style=solid];
+    16 -> 17 [style=solid];
+    17 -> 18 [style=dotted];
+    18 -> 19 [style=solid];
 }
