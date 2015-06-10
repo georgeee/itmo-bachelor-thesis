@@ -21,7 +21,7 @@
     work-id6174 $ cat y x > z
 \end{code}
 
-\includegraphics[scale=1.5]{example2.eps}
+\includegraphics[scale=1]{example2.eps}
 
 На рисунке виден пример граф данной сессии пользователя. Видно, какие файлы были
 задействованы для каких команд.
@@ -48,7 +48,7 @@
     work-id1510 $ touch 2
 \end{code}
 
-\includegraphics[scale=1.5]{example3.eps}
+\includegraphics[scale=1]{example3.eps}
 
 На рисунке виден пример граф данной сессии пользователя. Показано, что в графе
 есть несколько сессий, которые работали параллельно.

@@ -47,15 +47,7 @@ revisionRoot name = commitsRoot.traverse.filteredByName name._contents
 
 workDirs = projectRoot.traverse.filteredByName workDirName
 
-workingState name = gshellRoot.traverse.filteredByName name._contents.traverse.filteredByName workHelperFileName._file
-
-masterState = commitsRoot.traverse.filteredByName masterFileName._file
-
 parents name = revisionRoot name.traverse.filteredByName parentsFileName._file
-
-timeStamp name = revisionRoot name.traverse.filteredByName timeStampFileName._file
-
-revCommit revision = commitsRoot.traverse.filteredByName revision._contents.traverse.filteredByName commitFileName._file
 \end{code}
 
 ### Монада State  ###
@@ -78,7 +70,7 @@ revCommit revision = commitsRoot.traverse.filteredByName revision._contents.trav
 ### Трансформеры ###
 
 Монадный трансформер --- это некая "матрешка". Он объедиет две монады в одну, с
-целью получения свойст двух монад в одной.
+целью получения свойств двух монад в одной.
 
 В моей программе используется монадный трансформер _StateT_ вместе с монадой
 _IO_. Это позволяло менять состояние программы, а так же выполнять IO действия,
