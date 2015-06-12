@@ -15,12 +15,10 @@
 \setotherlanguage{english}
 
 \usepackage[numbers]{natbib}
-%\bibliographystyle{utf8gost705u}
 \bibliographystyle{utf8gost705u}
 \renewcommand{\bibnumfmt}[1]{#1.\hfill}
 \renewcommand{\bibsection}{\likechapter{Список источников}\vspace{-2em}}
 \setlength{\bibsep}{0pt}
-\renewcommand{\bibfont}{\footnotesize}
 
 \usepackage{indentfirst}
 \frenchspacing
@@ -31,18 +29,19 @@
 \widowpenalty=10000
 
 \usepackage{titlesec}
-\titleformat{\chapter}[display]{\filcenter}{\MakeUppercase{\chaptertitlename} \thechapter}{8pt}{\bfseries}
+\titleformat{\chapter}[hang]{\filcenter}{\MakeUppercase{\chaptertitlename} \thechapter.\quad}{8pt}{\bfseries}
 \titleformat{\section}{\bfseries\normalsize}{\thesection.\quad}{1em}{}
 \titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.\quad}{1em}{}
 \titlespacing*{\chapter}{0pt}{-30pt}{8pt}
 \titlespacing*{\section}{\parindent}{*4}{*4}
-\titlespacing*{\subsection}{\parindent}{*4}{*4}
+\titlespacing*{\subsection}{\parindent}{*2}{*2}
 
 \usepackage{tocloft}
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries\MakeUppercase}
 \renewcommand{\cftbeforetoctitleskip}{-1em}
 \renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-2.5em}}
 \renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftchapaftersnum}{.\quad}
 \renewcommand{\cftsecaftersnum}{.\quad}
 \renewcommand{\cftsubsecaftersnum}{.\quad}
 \renewcommand{\cftsecfont}{\hspace{30pt}}
@@ -78,27 +77,9 @@
     \addtocounter{chapter}{-1}
 
     \addcontentsline{toc}{likechapter}{\uppercase{#1}}
-    \renewcommand{\section}[1]{%
-        \phantomsection
-        \oldSection*{##1}
-        \stepcounter{section}
-        \addcontentsline{toc}{section}{##1}
-    }
-    \renewcommand{\subsection}[1]{%
-        \phantomsection
-        \oldSubsection*{##1}
-        \stepcounter{subsection}
-        \addcontentsline{toc}{subsection}{##1}
-    }
 }
 \renewcommand{\chapter}[1]{%
     \oldChapter{#1}
-    \renewcommand{\section}[1]{%
-        \oldSection{##1}
-    }
-    \renewcommand{\subsection}[1]{%
-        \oldSubsection{##1}
-    }
 }
 
 \usepackage{enumitem}
@@ -106,7 +87,7 @@
 \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
 \makeatother
 \setlist{nolistsep}
-\renewcommand{\labelitemi}{-}
+\renewcommand{\labelitemi}{--}
 \renewcommand{\labelenumi}{\asbuk{enumi})}
 \renewcommand{\labelenumii}{\arabic{enumii})}
 \renewcommand{\labelenumiii}{\arabic{enumiii})}
@@ -135,7 +116,8 @@
 \usepackage[all]{hypcap}
 \newcommand{\inlref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
 
-
+\exhyphenpenalty=10000
+\usepackage{wrapfig}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
@@ -169,7 +151,7 @@
     breakatwhitespace,
     extendedchars=true,
     aboveskip=1em,
-    belowskip=1em,
+    belowskip=-2em,
     frame=single,
     captionpos=b,
     numbers=left,
@@ -182,9 +164,11 @@
     stringstyle=\color{redstrings}
 }
 \renewcommand\lstlistingname{Листинг}
+\makeatletter
 \lstnewenvironment{code}[1][]
-    {\lstset{float=ht,#1}}
+    {\lstset{float=htb,#1}}
         {}
+\makeatother
 
 % For some reason those are missing in polyglossia
 \def\bbljan{янв}

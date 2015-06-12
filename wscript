@@ -17,6 +17,7 @@ def build(bld):
                 sources.append(os.path.join(chdir, 'chapter.pd'))
                 for sec in ch[1]:
                     sources.append(os.path.join(chdir, 'sec_' + sec + '.pd'))
+                sources.append(os.path.join(chdir, 'conclusion.pd'))
             else:
                 raise TypeError('Wrong part')
         return ' '.join(sources)

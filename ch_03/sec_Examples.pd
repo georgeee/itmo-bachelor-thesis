@@ -3,52 +3,62 @@
 
 \subsection{Отмена действия}
 
-В данном примере рассмотрено использование примитивных команд, которые часто
-используются в консоли. Так же используется функция отмены предыдущего действия
-так как были переданы аргументы в не правильном порядке, что дало не верный
-результат.
-
-\begin{code}[language=bash,label=lst:example2,
-                   caption={}]
-    $ gshell init project
-    $ gshell enter project
-    work-id6174 $ touch x
-    work-id6174 $ touch y
-    work-id6174 $ echo 1 >> x
-    work-id6174 $ echo 2 >> y
-    work-id6174 $ cat x y > z
-    work-id6174 $ gshell rollback
-    work-id6174 $ cat y x > z
+\begin{code}[language=bash,label=lst:exampletwo,
+                   caption={Пример сессии с отменой действия}]
+    % gshell init project
+    % gshell enter project
+    work-id6174 % touch x
+    work-id6174 % touch y
+    work-id6174 % echo 1 >> x
+    work-id6174 % echo 2 >> y
+    work-id6174 % cat x y > z
+    work-id6174 % gshell rollback
+    work-id6174 % cat y x > z
 \end{code}
 
-\includegraphics[scale=1]{example2.eps}
+В данном примере рассмотрено выполнение примитивных команд, которые часто
+вызываются в консоли. Также используется функция отмены предыдущего действия,
+так как были переданы аргументы в неправильном порядке, что дало неверный
+результат. Команды, что пользователь вводил в консоли, приведены в
+\inlref{листинге}{lst:exampletwo}.
 
-На рисунке виден пример граф данной сессии пользователя. Видно, какие файлы были
-задействованы для каких команд.
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[scale=1]{example2}
+    \end{center}
+    \caption{Пример отмены действий\label{img:exampletwo}}
+\end{figure}
+
+На \inlref{рис.}{img:exampletwo} виден пример граф данной сессии пользователя.
+Видно, какие файлы были задействованы для каких команд.
 
 \subsection{Параллельная работа}
 
-В данном примере рассмотрено использование gshell для параллельной работы в
-нескольких ветвях.
-
-\begin{code}[language=bash,label=lst:example3,
-                   caption={}]
-    $ gshell init project
-    $ gshell enter project
-    work-id6174 $ touch x
-    work-id6174 $ echo 1 > z
-
-    $ gshell enter project
-    work-id4416 $ touch y
-    work-id4416 $ echo 2 > z
-    work-id4416 $ cat z > m
-
-    $ gshell enter project
-    work-id1510 $ mkdir 1
-    work-id1510 $ touch 2
+\begin{code}[language=bash,label=lst:examplethree,
+                   caption={Пример параллельных сессий}]
+    % gshell init project
+    % gshell enter project
+    work-id6174 % touch x
+    work-id6174 % echo 1 > z
+    % gshell enter project
+    work-id4416 % touch y
+    work-id4416 % echo 2 > z
+    work-id4416 % cat z > m
+    % gshell enter project
+    work-id1510 % mkdir 1
+    work-id1510 % touch 2
 \end{code}
 
-\includegraphics[scale=1]{example3.eps}
+В данном примере рассмотрено использование gshell для параллельной работы в
+нескольких ветвях. Команды, что пользователь вводил в консоли, приведены в
+\inlref{листинге}{lst:examplethree}.
 
-На рисунке виден пример граф данной сессии пользователя. Показано, что в графе
-есть несколько сессий, которые работали параллельно.
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[scale=300]{example3}
+    \end{center}
+    \caption{Пример параллельной работы\label{img:examplethree}}
+\end{figure}
+
+На \inlref{рис.}{img:examplethree} виден пример граф данной сессии пользователя.
+Показано, что в графе есть несколько сессий, которые работали параллельно.
