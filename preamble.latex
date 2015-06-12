@@ -30,10 +30,10 @@
 \clubpenalty=10000
 \widowpenalty=10000
 
-\usepackage[medium]{titlesec}
+\usepackage{titlesec}
 \titleformat{\chapter}[display]{\filcenter}{\MakeUppercase{\chaptertitlename} \thechapter}{8pt}{\bfseries}
-\titleformat{\section}{\bfseries\normalsize}{\thesection}{1em}{}
-\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{1em}{}
+\titleformat{\section}{\bfseries\normalsize}{\thesection.\quad}{1em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.\quad}{1em}{}
 \titlespacing*{\chapter}{0pt}{-30pt}{8pt}
 \titlespacing*{\section}{\parindent}{*4}{*4}
 \titlespacing*{\subsection}{\parindent}{*4}{*4}
@@ -43,6 +43,8 @@
 \renewcommand{\cftbeforetoctitleskip}{-1em}
 \renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-2.5em}}
 \renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftsecaftersnum}{.\quad}
+\renewcommand{\cftsubsecaftersnum}{.\quad}
 \renewcommand{\cftsecfont}{\hspace{30pt}}
 \renewcommand{\cftsubsecfont}{\hspace{9pt}}
 \renewcommand{\cftbeforechapskip}{1em}
