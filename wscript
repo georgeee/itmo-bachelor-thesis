@@ -23,27 +23,53 @@ def build(bld):
         return ' '.join(sources)
     sources = make_sources([
         'Introduction',
-        ('01', [
-            'Linux',
-            'Unionfs',
-            'ZSH',
+        ('01', [ #Обзор предметной области
+            '1_Thesauri',
+            '2_Applications',
+            '3_PWN',
+            '4_RussNets',
+            '5_YARN',
         ]),
-        ('02', [
-            'Problem',
-            'Goal',
-            'Task',
-            'Similar',
-            'Tools',
+        ('02', [ #Постановка задачи
+            '1_Problem',
+            '2_Previous',
+            '3_BalkaNet',
+            '4_Task',
         ]),
-        ('03', [
-            'Gshell',
-            'Functions',
-            'Main',
-            'DirTree',
-            'Graph',
-            'Workflow',
-            'Implementation',
-            'Examples',
+        ('03', [ #YARN, methodology and current state
+            '1_Croudsourcing',
+            '2_Current_state', #Current state overview
+            '3_Problems',
+        ]),
+        ('04', [ #Automatic resolution approach
+            '1_Graph',
+            '2_Jaccard', #Measure core, naive approach
+            '3_Problem_resolution', #Major problems resolution
+            '4_Improvements',  #Additional improvemets on measure
+            '5_Orphans',
+            '6_Result',
+            '7_Unused', #Improvements, that weren't implemented (or tested)
+        ]),
+        ('05', [ #Crowdsourcing approach
+            '1_Motivation',
+            '2_Prerequisites',
+            '3_Task_formulation',
+            '4_Workflow',
+            '5_Result_processing',
+            '6_Testing',
+        ]),
+        ('06', [ #Major task processing, results, future work (проведение выравнивания)
+            '1_Task_preparation',
+            '2_Experiment',
+            '3_Results',
+            '4_Future_work',
+        ]),
+        ('07', [ #Implementation
+            '1_Dictionaries',
+            '2_Graph_CLI',
+            '3_PWN_version_mapping',
+            '4_Croudsourcing_workflow',
+            '5_Imagenet_downloading',
         ]),
         'Conclusion',
     ])
