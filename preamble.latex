@@ -134,7 +134,7 @@
 \usepackage{mathtools}
 
 \usepackage{longtable}
-
+\usepackage{amssymb}
 
 \usepackage{xcolor}
 \usepackage{listings}
