@@ -46,9 +46,8 @@ def build(bld):
             '2_Jaccard', #Measure core, naive approach
             '3_Problem_resolution', #Major problems resolution
             '4_Improvements',  #Additional improvemets on measure
-            '5_Orphans',
-            '6_Result',
-            '7_Unused', #Improvements, that weren't implemented (or tested)
+            '5_Testing',
+            '6_Unused', #Improvements, that weren't implemented (or tested)
         ]),
         ('05', [ #Crowdsourcing approach
             '1_Motivation',
