@@ -50,7 +50,6 @@ def build(bld):
             '6_Unused', #Improvements, that weren't implemented (or tested)
         ]),
         ('05', [ #Crowdsourcing approach
-            '1_Motivation',
             '2_Prerequisites',
             '3_Task_formulation',
             '4_Workflow',
