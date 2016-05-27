@@ -36,11 +36,6 @@ def build(bld):
             '3_BalkaNet',
             '4_Task',
         ]),
-        ('03', [ #YARN, methodology and current state
-            '1_Croudsourcing',
-            '2_Current_state', #Current state overview
-            '3_Problems',
-        ]),
         ('04', [ #Automatic resolution approach
             '1_Graph',
             '2_Jaccard', #Measure core, naive approach
@@ -48,6 +43,7 @@ def build(bld):
             '4_Improvements',  #Additional improvemets on measure
             '5_Testing',
             '6_Unused', #Improvements, that weren't implemented (or tested)
+            '7_BCs'
         ]),
         ('05', [ #Crowdsourcing approach
             '2_Prerequisites',
@@ -55,14 +51,9 @@ def build(bld):
             '4_Workflow',
             '5_Result_processing',
             '6_Testing',
+            '7_Future_work'
         ]),
-        ('06', [ #Major task processing, results, future work (проведение выравнивания)
-            '1_Task_preparation',
-            '2_Experiment',
-            '3_Results',
-            '4_Future_work',
-        ]),
-        ('07', [ #Implementation
+        ('06', [ #Implementation
             '1_Dictionaries',
             '2_Graph_CLI',
             '3_PWN_version_mapping',
