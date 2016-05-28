@@ -19,6 +19,7 @@
 \renewcommand{\bibnumfmt}[1]{#1.\hfill}
 \renewcommand{\bibsection}{\likechapter{Список источников}\vspace{-2em}}
 \setlength{\bibsep}{0pt}
+\renewcommand{\bibfont}{\footnotesize}
 
 \usepackage{indentfirst}
 \frenchspacing
@@ -134,6 +135,7 @@
 \usepackage{mathtools}
 
 \usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{amssymb}
 
 \usepackage{xcolor}
@@ -142,7 +144,6 @@
 \definecolor{bluekw}{rgb}{0,0,0.5}
 \definecolor{redstrings}{rgb}{0.5,0,0}
 \definecolor{graylinenumbers}{rgb}{0.5,0.5,0.5}
-\input{haskell.latex}
 \lstset{%
     basicstyle=\footnotesize\ttfamily,
     columns=fullflexible,
