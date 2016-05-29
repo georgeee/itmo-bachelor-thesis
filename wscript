@@ -25,7 +25,7 @@ def build(bld):
         'Introduction',
         ('01', [ #Обзор предметной области
             '1_Thesauri',
-            '2_Applications',
+            #'2_Applications',
             '3_PWN',
             '4_RussNets',
             '5_YARN',
@@ -33,7 +33,6 @@ def build(bld):
         ('02', [ #Постановка задачи
             '1_Problem',
             '2_Previous',
-            '3_BalkaNet',
             '4_Task',
         ]),
         ('04', [ #Automatic resolution approach
