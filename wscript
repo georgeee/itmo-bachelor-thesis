@@ -52,13 +52,6 @@ def build(bld):
             '6_Testing',
             '7_Future_work'
         ]),
-        ('06', [ #Implementation
-            '1_Dictionaries',
-            '2_Graph_CLI',
-            '3_PWN_version_mapping',
-            '4_Croudsourcing_workflow',
-            '5_Imagenet_downloading',
-        ]),
         'Conclusion',
     ])
     bld(features='pandoc-merge', source=sources + ' bib.bib', target='main.latex',
