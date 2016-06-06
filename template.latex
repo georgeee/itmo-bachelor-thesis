@@ -11,7 +11,9 @@ $include-before$
 
 \input{Title.latex}
 \addtocounter{page}{2}
-\clearpage\mbox{}\clearpage
+\clearpage\mbox{}
+
+%\clearpage
 
 $if(toc)$
 \tableofcontents
